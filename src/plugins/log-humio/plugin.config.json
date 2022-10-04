@@ -1,0 +1,35 @@
+{
+  "key": "log-humio",
+  "name": "Humio",
+  "icon": "log-humio.png",
+  "description": "Humio log plugin",
+  "badges": [
+    {
+      "img": "https://img.shields.io/github/license/BetterCorp/service-base-plugin-humio"
+    },
+    {
+      "img": "https://img.shields.io/snyk/vulnerabilities/github/BetterCorp/service-base-plugin-humio"
+    },
+    {
+      "img": "https://img.shields.io/github/issues-raw/BetterCorp/service-base-plugin-humio"
+    },
+    {
+      "img": "https://github.com/BetterCorp/service-base-plugin-humio/actions/workflows/develop.yml/badge.svg?branch=develop"
+    },
+    {
+      "img": "https://github.com/BetterCorp/service-base-plugin-humio/actions/workflows/master.yml/badge.svg?branch=master"
+    },
+    {
+      "img": "https://img.shields.io/github/issues-raw/BetterCorp/service-base-plugin-humio"
+    },
+    {
+      "img": "https://img.shields.io/npm/dt/@bettercorp/service-base-plugin-humio"
+    },
+    {
+      "img": "https://img.shields.io/bundlephobia/min/@bettercorp/service-base-plugin-humio"
+    },
+    {
+      "img": "https://img.shields.io/npm/v/@bettercorp/service-base-plugin-humio"
+    }
+  ]
+}
