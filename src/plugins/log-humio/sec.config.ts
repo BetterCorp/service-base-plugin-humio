@@ -9,18 +9,47 @@ export interface HumioConfig extends IPluginConfig {
   repository: string; // Repository: the default repository (or view) to work with
 }
 
-export class Config extends SecConfig<HumioConfig> {
+export interface HumioPluginConfig extends IPluginConfig {
+  humioConfig: HumioConfig;
+  reportStats: boolean; // Report Stats: Report STAT to humio
+}
+
+export class Config extends SecConfig<HumioPluginConfig> {
   migrate(
     mappedPluginName: string,
-    existingConfig: HumioConfig
-  ): HumioConfig {
+    existingConfig: HumioPluginConfig
+  ): HumioPluginConfig {
     return {
-      apiToken: existingConfig.apiToken === undefined ? undefined : existingConfig.apiToken,
-      ingestToken: existingConfig.ingestToken === undefined ? 'xyz...' : existingConfig.ingestToken,
-      host: existingConfig.host === undefined ? 'cloud.humio.com' : existingConfig.host,
-      port: existingConfig.port === undefined ? 443 : existingConfig.port,
-      basePath: existingConfig.basePath === undefined ? '/' : existingConfig.basePath,
-      repository: existingConfig.repository === undefined ? 'sandbox' : existingConfig.repository
+      humioConfig: {
+        apiToken:
+          existingConfig.humioConfig.apiToken === undefined
+            ? undefined
+            : existingConfig.humioConfig.apiToken,
+        ingestToken:
+          existingConfig.humioConfig.ingestToken === undefined
+            ? "xyz..."
+            : existingConfig.humioConfig.ingestToken,
+        host:
+          existingConfig.humioConfig.host === undefined
+            ? "cloud.humio.com"
+            : existingConfig.humioConfig.host,
+        port:
+          existingConfig.humioConfig.port === undefined
+            ? 443
+            : existingConfig.humioConfig.port,
+        basePath:
+          existingConfig.humioConfig.basePath === undefined
+            ? "/"
+            : existingConfig.humioConfig.basePath,
+        repository:
+          existingConfig.humioConfig.repository === undefined
+            ? "sandbox"
+            : existingConfig.humioConfig.repository,
+      },
+      reportStats:
+        existingConfig.reportStats === undefined
+          ? true
+          : existingConfig.reportStats,
     };
   }
 }

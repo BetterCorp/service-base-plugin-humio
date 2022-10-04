@@ -1,13 +1,15 @@
 import { IPluginLogger, LoggerBase, LogMeta } from "@bettercorp/service-base";
-import { HumioConfig } from "./sec.config";
+import { HumioPluginConfig } from "./sec.config";
 const Humio = require("humio");
 import * as OS from "os";
 
-export class Logger extends LoggerBase<HumioConfig> {
+export class Logger extends LoggerBase<HumioPluginConfig> {
   private _humio!: typeof Humio;
+  private _reportStats: boolean = false;
   private async humio(): Promise<typeof Humio> {
     if (this._humio !== undefined) return this._humio;
-    this._humio = new Humio(await this.getPluginConfig());
+    this._humio = new Humio((await this.getPluginConfig()).humioConfig);
+    this._reportStats = (await this.getPluginConfig()).reportStats;
     return this._humio;
   }
   constructor(pluginName: string, cwd: string, defaultLogger: IPluginLogger) {
@@ -19,7 +21,15 @@ export class Logger extends LoggerBase<HumioConfig> {
     key: string,
     value: number
   ): Promise<void> {
-    if (!this.runningDebug) return;
+    if (!this._reportStats) return;
+    (await this.humio()).sendJson({
+      eventType: "STAT",
+      key,
+      value,
+      _hostname: OS.hostname(),
+      _plugin: plugin.toUpperCase(),
+      _workingDir: this.cwd,
+    });
   }
   public async debug<T extends string>(
     plugin: string,
