@@ -1,5 +1,5 @@
 {
-  "name": "@bettercorp/service-base-plugin-log-humio",
+  "name": "@bettercorp/service-base-plugin-humio",
   "license": "AGPL-3.0-only",
   "repository": {
     "url": "https://github.com/BetterCorp/service-base-plugin-humio"
