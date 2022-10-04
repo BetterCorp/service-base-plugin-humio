@@ -13,7 +13,7 @@
     "lib/**/*"
   ],
   "main": "lib/index.js",
-  "version": "3.0.20220110112748",
+  "version": "0.0.1",
   "bsb_project": true,
   "devDependencies": {
     "ts-node": "^10.4.0",
