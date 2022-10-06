@@ -22,27 +22,27 @@ export class Config extends SecConfig<HumioPluginConfig> {
     return {
       humioConfig: {
         apiToken:
-          existingConfig.humioConfig.apiToken === undefined
+          (existingConfig.humioConfig || {}).apiToken === undefined
             ? undefined
             : existingConfig.humioConfig.apiToken,
         ingestToken:
-          existingConfig.humioConfig.ingestToken === undefined
+          (existingConfig.humioConfig || {}).ingestToken === undefined
             ? "xyz..."
             : existingConfig.humioConfig.ingestToken,
         host:
-          existingConfig.humioConfig.host === undefined
+          (existingConfig.humioConfig || {}).host === undefined
             ? "cloud.humio.com"
             : existingConfig.humioConfig.host,
         port:
-          existingConfig.humioConfig.port === undefined
+          (existingConfig.humioConfig || {}).port === undefined
             ? 443
             : existingConfig.humioConfig.port,
         basePath:
-          existingConfig.humioConfig.basePath === undefined
+          (existingConfig.humioConfig || {}).basePath === undefined
             ? "/"
             : existingConfig.humioConfig.basePath,
         repository:
-          existingConfig.humioConfig.repository === undefined
+          (existingConfig.humioConfig || {}).repository === undefined
             ? "sandbox"
             : existingConfig.humioConfig.repository,
       },
